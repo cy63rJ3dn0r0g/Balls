@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flashy ball</title>
+</head>
+<style>
+    .frame {
+        height: 600px;
+        width: 600px;
+        margin-top: -300px;
+	    margin-left: -300px;
+        display: flex;
+        position: absolute;
+        top:50%;
+        left:50%;
+        background:white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 5px 5px gray;
+    }
+    .wrapper {
+        background: black;
+        width: 600px;
+        height: 600px;
+        display: flex;
+        bottom: 400px;
+        left: 400px;
+        filter: blur(10px) contrast(10);
+    }
+    .floor {
+        bottom: -15px;
+        height: 40px;
+        width: 100%;
+        border-radius: 30%;
+        background:white;
+        position: absolute;
+    }
+    .celling {
+        top: -10px;
+        height: 40px;
+        width: 100%;
+        border-radius: 30%;
+        background: white;
+        position: absolute;
+    }
+
+    .bball1 {
+        height: 200px;
+        width: 200px;
+        border-radius: 70% 50% 70% 50%;
+        background: limegreen;
+        position: absolute;
+        top: 200px;
+        left: 200px;
+        transform: translate(-20%, -20%); 
+        animation: b1 1s linear 0.5s infinite;
+        transform: rotate(120deg);
+        transform-origin: 10px -10px;
+    }
+    .bball2 {
+        height: 150px;
+        width: 150px;
+        border-radius: 50% 70% 50% 70%;
+        background: yellow;
+        position: absolute;
+        top: 200px;
+        left: 200px; 
+        transform: translate(-50%, -50%);
+        animation: b2 10s linear 0.6s infinite;
+        transform-origin: 40px -80px;
+    }
+    .bball3 {
+        height: 125px;
+        width: 130px;
+        border-radius: 80% 50% 80% 50%;
+        background: cyan;
+        position: absolute;
+        top: 250px;
+        left: 250px;
+        animation: b3 7s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.6s infinite;
+        transform-origin: 40px -20px;
+    }
+    .sball1 {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: magenta;
+        position: absolute;
+        top: 1000px;
+        left: 100px;
+        animation: sb1 5s cubic-bezier(0.215, 0.610, 0.355, 1) 1.6s infinite;
+        transform-origin: 120px 60px;
+
+    }
+    .sball2 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: red;
+        position: absolute;
+        bottom: 250px;
+        left: 250px;
+        animation: sb2 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.02s infinite;
+        transform-origin: 130px 60px;
+
+    }
+    .sball3 {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: blue;
+        position: absolute;
+        bottom: 250px;
+        right: 250px;
+        animation: sb3 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 1.2s infinite;
+        transform-origin: -30px 100px;
+
+    }
+    .sball4 {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: aqua;
+        position: absolute;
+        top: 255px;
+        left: 225px;
+        animation: sb4 5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.69s infinite;
+        transform-origin: 69px 69px;
+
+    }
+    .sball5 {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: darkorange;
+        position: absolute;
+        top: 250px;
+        right: 250px;
+        animation: sb5 10s cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.34s infinite;
+        transform-origin: -12px 150px;
+    }
+    .sball6 {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background: Aquamarine;
+        position: absolute;
+        top: 250px;
+        right: 250px;
+        transform: rotate(240deg);
+        transform: translate(-50%,-50%);
+        animation: sb6 10s linear 0.2s infinite;
+        transform-origin: 30px -50px;
+    }
+    .drop1 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 200px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+        animation: 4s cubic-bezier(0.55, 0.08, 0.93, 0.19).5s infinite raindrop;
+}
+    .drop2 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 500px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+        animation: 3s cubic-bezier(0.55, 0.08, 0.93, 0.19) .15s infinite raindrop;
+    }    
+    .drop3 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 400px;
+        transform: rotate(90deg);
+        animation: 3s cubic-bezier(0.55, 0.08, 0.93, 0.19) 0.69s infinite raindrop;
+    }
+    .drop4 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 25px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+        animation: 4s cubic-bezier(0.55, 0.08, 0.93, 0.19) 0.24s infinite raindrop;
+        transform-origin: 40px 120px;
+    }
+    .drop5 {
+        width: 45px;
+        height: 45px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 69px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+        animation: 4s cubic-bezier(0.55, 0.08, 0.93, 0.19) 0.49s infinite raindrop;
+        transform-origin: 40px 120px;
+    }
+    .drop6 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 169px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+         animation: 2.8s cubic-bezier(0.55, 0.08, 0.93, 0.19) 0.69s infinite raindrop;
+         transform-origin: 40px 120px;
+    }
+    .drop7 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 269px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+         animation: 3s cubic-bezier(0.55, 0.08, 0.93, 0.19) 0.99s infinite raindrop;
+         transform-origin: 40px 120px;
+    }
+    .drop8 {
+        width: 45px;
+        height: 35px;
+        border-radius: 80% 90% 80% 90%;
+        background: black;
+        position: absolute;
+        top: 0px;
+        right: 369px;
+        transform: rotate(90deg);
+        transform: translate(-50%, -50%);
+        animation: 3s cubic-bezier(0.55, 0.08, 0.93, 0.19) 1.24s infinite raindrop;
+        transform-origin: 40px 120px;
+    }
+
+    @keyframes raindrop {
+	from {
+        background: white;
+		transform: translateY(-50px);
+	}
+	to {
+        background: white;
+		transform: translateY(700px);
+	}   
+}
+    @keyframes b1 {
+        0% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(180deg);
+	}
+    75%{
+        transform: rotate(270deg);
+    }
+	100% {
+		transform: rotate(360deg);
+        
+	}
+}
+    @keyframes b2 {
+        0% {
+            transform: rotate(0deg);
+        }
+        25% {
+            transform: rotate(90deg);
+        }
+        50% { 
+            transform: rotate(180deg);
+        }
+        75% {
+            transform: rotate(270deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes b3 {
+        0% {
+            transform: rotate(0deg);
+            }
+
+            50% {
+            transform: rotate(180deg);
+            }
+            100% {
+            transform: rotate(360deg);
+}
+    }
+    @keyframes sb1 {
+        0% {
+            top:100px;
+            left: 100px;
+            transform: translate(-10%, -10%);
+            transform: rotate(0deg);
+        }
+        25% {
+            top:100px;
+            left: 300px;
+            transform: translate(-30%, -30%);
+            transform: rotate(-90deg);
+        }
+        50% { 
+            top:300px;
+            left: 300px;
+            transform: translate(-45%, -45%);
+            transform: rotate(-180deg);
+        }
+        75% {
+            top:300px;
+            left: 100px;
+            transform: translate(-65%,-65%);
+            transform: rotate(-270deg);
+        }
+        100% {
+            top: 100px;
+            left: 100px;
+            transform: translate(-10%, -10%);
+            transform: rotate(0deg);
+        }
+    }
+    @keyframes sb2 {
+        0% {
+            top:120px;
+            left: 50px;
+            transform: translate(-10%, -10%);
+            transform: rotate(0deg);
+        }
+        25% {
+            top:200px;
+            left: 80px;
+            transform: translate(-30%, -30%);
+            transform: rotate(90deg);
+        }
+        50% {
+            top:250px;
+            left: 100px;
+            transform: translate(-45%, -45%);
+            transform: rotate(180deg);
+        }
+        75% {
+            top:200px;
+            left: 80px;
+            transform: translate(-65%,-65%);
+            transform: rotate(270deg);
+        }
+        100% {
+            top:120px;
+            left: 50px;
+            transform: translate(-10%, -10%);
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes sb3 {
+        0% {
+	        transform: rotate(-90deg);
+	    }
+
+	    50% {
+		    transform: rotate(90deg);
+	    }
+	    100% {
+		    transform: rotate(270deg);
+	    }
+    }
+    @keyframes sb4 {
+        0% {
+		transform: rotate(45deg);
+	}
+
+	50% {
+		transform: rotate(-135eg);
+	}
+	100% {
+		transform: rotate(-315deg);
+        }
+    }
+    @keyframes sb5 {
+        0% {
+		transform: rotate(-45deg);
+	}
+
+	50% {
+		transform: rotate(135deg);
+	}
+	100% {
+		transform: rotate(305deg);
+    }
+    }
+    @keyframes sb6 {
+        0% {
+		transform: rotate(152deg);
+	}
+
+	50% {
+		transform: rotate(351eg);
+	}
+	100% {
+		transform: rotate(-69deg);
+    } 
+    }
+
+</style>
+<body>
+    <div class="frame">
+        <div class="wrapper">
+            <div class="bball1"></div>
+            <div class="bball2"></div>
+            <div class="bball3"></div>
+            <div class="sball1"></div>
+            <div class="sball2"></div>
+            <div class="sball3"></div>
+            <div class="sball4"></div>
+            <div class="sball5"></div>
+            <div class="sball6"></div>
+            <div class="drop1"></div>
+            <div class="drop2"></div>
+            <div class="drop3"></div>
+            <div class="drop4"></div>
+            <div class="drop5"></div>
+            <div class="drop6"></div>
+            <div class="drop7"></div>
+            <div class="drop8"></div>
+            <div class="celling"></div>
+            <div class="floor"></div>
+        </div>    
+    </div>
+</body>
+</html>
